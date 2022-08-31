@@ -18,17 +18,15 @@ jobs:
       run: sudo apt update
     
     - name: Install dependencies
-      run: sudo apt install git bc bison flex libssl-dev make llvm clang clang-tools binutils-aarch64-linux-gnu gcc-aarch64-linux-gnu lld
+      run: sudo apt install git bc bison flex libssl-dev make crossbuild-essential-arm64
       
     - name: Build Linux
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: |
             mkdir out
-            make O=out/ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- CC=clang vendor/bengal-perf_defconfig
+            make O=out/ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- vendor/bengal-perf_defconfig
             make -j$(nproc) O=out/ \
                       ARCH=arm64 \
-                      CC=clang \
-                      LLVM=1 \
                       CROSS_COMPILE=aarch64-linux-gnu-
       
     - uses: actions/upload-artifact@v3
