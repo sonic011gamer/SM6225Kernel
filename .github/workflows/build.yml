@@ -28,7 +28,7 @@ jobs:
             make -j$(nproc) O=out/ \
                       ARCH=arm64 \
                       CC=clang \
-                      CLANG_TRIPLE=aarch64-linux-gnu- \
+                      LLVM=1 \
                       CROSS_COMPILE=aarch64-linux-gnu-
       
     - uses: actions/upload-artifact@v3
