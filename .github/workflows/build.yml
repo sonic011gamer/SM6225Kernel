@@ -25,7 +25,7 @@ jobs:
       run: |
             mkdir out
             make O=out/ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- CC=clang vendor/bengal-perf_defconfig
-            make -j$(nproc --all) O=out/ \
+            make -j$(nproc) O=out/ \
                       ARCH=arm64 \
                       CC=clang \
                       CLANG_TRIPLE=aarch64-linux-gnu- \
